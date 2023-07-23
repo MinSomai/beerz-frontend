@@ -3,7 +3,7 @@ import { BEERS_TABS } from "../const";
 import useBeers from "../hooks/useBeers";
 import useBeersDispatch from "../hooks/useBeersDispatch";
 import ACTIONS from "../store/beersTab/actions";
-import AddBeers from "./AddBears";
+import AddBeers from "./AddBeers";
 import BeerList from "./BeerList";
 
 export default function BeersTab() {
@@ -14,7 +14,7 @@ export default function BeersTab() {
     <div className="tabs-container">
       <Tabs
         id="beers-tab"
-        className="mb-3"
+        className="beers-tab mb-3"
         defaultActiveKey={BEERS_TABS.ALL_BEERS}
         activeKey={activeTab}
         onSelect={(activeTab) => {

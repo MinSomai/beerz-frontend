@@ -31,6 +31,14 @@ export default function beersReducer(state, action) {
         beers: action.beers,
       };
     }
+    case ACTIONS.ADD_BULK_BEERS: {
+      const updatedBeers = [...(state.beers ?? []), ...(action?.beers ?? [])];
+
+      return {
+        ...state,
+        beers: updatedBeers,
+      };
+    }
     case ACTIONS.SET_ACTIVE_TAB: {
       return {
         ...state,
@@ -41,6 +49,12 @@ export default function beersReducer(state, action) {
       return {
         ...state,
         isShowAddBeerModal: action.isShowAddBeerModal,
+      };
+    }
+    case ACTIONS.SET_IS_LOADING: {
+      return {
+        ...state,
+        isLoading: action.isLoading,
       };
     }
     default: {

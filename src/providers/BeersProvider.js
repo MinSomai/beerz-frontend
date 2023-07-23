@@ -25,16 +25,32 @@ export default function BeersProvider({ children }) {
   const apiParser = new PunkApiParser();
 
   useEffect(() => {
-    async function fetchData() {
-      const beers = await getBeers();
-      const parsedBeers = apiParser.parseBeersList(beers);
-      dispatch({
-        type: ACTIONS.INIT_BEERS,
-        beers: parsedBeers,
-      });
+    async function fetchData({ page = 1, limit = 10 } = {}) {
+      try {
+        dispatch({
+          type: ACTIONS.SET_IS_LOADING,
+          isLoading: true,
+        });
+        const beers = await getBeers({ page, limit });
+        const parsedBeers = apiParser.parseBeersList(beers);
+        console.log(parsedBeers);
+        dispatch({
+          type: ACTIONS.INIT_BEERS,
+          beers: parsedBeers,
+        });
+      } catch (e) {
+        // TODO: handle errors/toast
+        console.log("Error fetching data.", e);
+      } finally {
+        dispatch({
+          type: ACTIONS.SET_IS_LOADING,
+          isLoading: false,
+        });
+      }
     }
-    fetchData();
+    fetchData({ page: 1, limit: 10 });
   }, []);
+
 
   return (
     <BeersContext.Provider value={state}>
