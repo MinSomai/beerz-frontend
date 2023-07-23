@@ -25,6 +25,12 @@ export default function beersReducer(state, action) {
         myBeers: action.myBeers,
       };
     }
+    case ACTIONS.INIT_BEERS: {
+      return {
+        ...state,
+        beers: action.beers,
+      };
+    }
     case ACTIONS.SET_ACTIVE_TAB: {
       return {
         ...state,

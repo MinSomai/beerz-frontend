@@ -20,7 +20,7 @@ export default function BeerList() {
         ) : (
           <Row xs={1} md={12} className="g-4">
             {beers?.map((eachBeer, idx) => (
-              <Col key={idx}>
+              <Col key={idx} md={6}>
                 <EachBeer beer={eachBeer} />
               </Col>
             ))}
