@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.beer-card.card {
+  display: flex;
+  flex-direction: row;
+}
+
+.beer-card.card > img {
+  max-height: 150px;
+  object-fit: contain;
+  max-width: 150px;
+}
+
+.tabs-container {
+  position: relative;
+}
+
+.tab-action {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+.mr-auto {
+  margin-right: auto;
+}
+
+.empty-placeholder {
+  min-height: 80vh;
+  background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
