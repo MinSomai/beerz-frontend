@@ -1,59 +1,8 @@
 import { Button, Row, Col, Form, Modal, InputGroup } from "react-bootstrap";
-import { useBeers, useBeersDispatch } from "../store/BeersContext";
-import { useState, useEffect } from "react";
+import useAddBeers from "../hooks/useAddBeers";
 
 function AddBeers() {
-  const { isShowAddBeerModal, myBeers } = useBeers();
-  const dispatch = useBeersDispatch();
-
-  const [validated, setValidated] = useState(false);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      return;
-    }
-
-    setValidated(true);
-
-    const formData = new FormData(form);
-
-    dispatch({
-      type: "addMyBeer",
-      name: formData.get("beerName"),
-      genre: formData.get("genre"),
-      description: formData.get("description"),
-    });
-
-    setValidated(false);
-    handleClose();
-  };
-
-  useEffect(() => {
-    const savedMyBeers = localStorage.getItem("myBeers");
-    if (savedMyBeers && savedMyBeers != "undefined") {
-      dispatch({
-        type: "initializeMyBeers",
-        myBeers: JSON.parse(savedMyBeers ?? []),
-      });
-    }
-  }, [dispatch]);
-
-  const handleClose = () => {
-    dispatch({
-      type: "setIsShowAddBeerModal",
-      isShowAddBeerModal: false,
-    });
-  };
-
-  const handleOpen = () => {
-    dispatch({
-      type: "setIsShowAddBeerModal",
-      isShowAddBeerModal: true,
-    });
-  };
+  const { isShowAddBeerModal, validated, handleSubmit, handleOpen, handleClose } = useAddBeers();
 
   return (
     <div>

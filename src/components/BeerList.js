@@ -1,6 +1,9 @@
 import { Button, Row, Col, Card, Spinner } from "react-bootstrap";
 import { BEERS_TABS } from "../const";
-import { useBeers, useBeersDispatch } from "../store/BeersContext";
+import useBeers from "../hooks/useBeers";
+import useBeersDispatch from "../hooks/useBeersDispatch";
+import ACTIONS from "../store/beersTab/actions";
+import EachBeer from "./EachBeer";
 
 export default function BeerList() {
   const dispatch = useBeersDispatch();
@@ -33,7 +36,7 @@ export default function BeerList() {
               <Button
                 onClick={() => {
                   dispatch({
-                    type: "setIsShowAddBeerModal",
+                    type: ACTIONS.SET_IS_SHOW_ADD_BEER_MOBEL,
                     isShowAddBeerModal: true,
                   });
                 }}
@@ -71,19 +74,5 @@ export default function BeerList() {
         </div>
       )}
     </Row>
-  );
-}
-
-function EachBeer({ beer }) {
-  // const dispatch = useTasksDispatch();
-  return (
-    <Card className="beer-card">
-      <Card.Img alt="hourzz beer" variant="top" src="./beerz.png" />
-      <Card.Body className="text-left py-4">
-        <Card.Title>{beer?.name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{beer?.genre}</Card.Subtitle>
-        <Card.Text>{beer?.description}</Card.Text>
-      </Card.Body>
-    </Card>
   );
 }
