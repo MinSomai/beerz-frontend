@@ -11,14 +11,14 @@ export default function useBeers() {
   const dispatch = useBeersDispatch();
   const state = useContext(BeersContext);
   const beers = useMemo(() => {
-    if (state.activeTab == BEERS_TABS.MY_BEERS) {
+    if (state.activeTab === BEERS_TABS.MY_BEERS) {
       return state?.myBeers;
     }
 
-    if (state.activeTab == BEERS_TABS.ALL_BEERS) {
+    if (state.activeTab === BEERS_TABS.ALL_BEERS) {
       return state?.beers;
     }
-  });
+  }, [state]);
 
   const fetchData = async ({ page = 1, limit = 10 } = {}) => {
     try {

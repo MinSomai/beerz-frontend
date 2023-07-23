@@ -20,7 +20,7 @@ export default function BeerList() {
         ))}
       </Row>
 
-      {!isLoading && activeTab === BEERS_TABS.MY_BEERS && (beers?.length == 0 || !beers) && (
+      {!isLoading && activeTab === BEERS_TABS.MY_BEERS && (beers?.length === 0 || !beers) && (
         <div className="empty-placeholder">
           <div className="text-center">
             <p className="mb-0">Nothing to see yet.</p>

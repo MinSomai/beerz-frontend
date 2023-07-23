@@ -11,7 +11,7 @@ export default function beersReducer(state, action) {
         id: uuidv4(),
       };
 
-      const updatedMyBeers = [...(state.myBeers ?? []), newBeer];
+      const updatedMyBeers = [newBeer, ...(state.myBeers ?? [])];
       localStorage.setItem("myBeers", JSON.stringify(updatedMyBeers));
 
       return {

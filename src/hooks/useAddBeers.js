@@ -39,7 +39,7 @@ export default function useAddBeers() {
 
   useEffect(() => {
     const savedMyBeers = localStorage.getItem("myBeers");
-    if (savedMyBeers && savedMyBeers != "undefined") {
+    if (savedMyBeers && savedMyBeers !== "undefined") {
       dispatch({
         type: ACTIONS.INIT_MY_BEERS,
         myBeers: JSON.parse(savedMyBeers ?? []),

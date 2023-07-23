@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { useReducer, useEffect } from "react";
 import { BEERS_TABS } from "../const";
 import beersReducer from "../store/beersTab/reducers";
@@ -22,18 +21,17 @@ const initialState = {
 
 export default function BeersProvider({ children }) {
   const [state, dispatch] = useReducer(beersReducer, initialState);
-  const apiParser = new PunkApiParser();
 
   useEffect(() => {
     async function fetchData({ page = 1, limit = 10 } = {}) {
       try {
+        const apiParser = new PunkApiParser();
         dispatch({
           type: ACTIONS.SET_IS_LOADING,
           isLoading: true,
         });
         const beers = await getBeers({ page, limit });
         const parsedBeers = apiParser.parseBeersList(beers);
-        console.log(parsedBeers);
         dispatch({
           type: ACTIONS.INIT_BEERS,
           beers: parsedBeers,
@@ -50,7 +48,6 @@ export default function BeersProvider({ children }) {
     }
     fetchData({ page: 1, limit: 10 });
   }, []);
-
 
   return (
     <BeersContext.Provider value={state}>
