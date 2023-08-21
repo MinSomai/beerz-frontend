@@ -37,6 +37,10 @@ export default function beersReducer(state, action) {
       return {
         ...state,
         beers: updatedBeers,
+        pagination: {
+          page: action.page,
+          limit: action.limit,
+        },
       };
     }
     case ACTIONS.SET_ACTIVE_TAB: {

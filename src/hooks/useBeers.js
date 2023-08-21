@@ -31,6 +31,8 @@ export default function useBeers() {
       dispatch({
         type: ACTIONS.ADD_BULK_BEERS,
         beers: parsedBeers,
+        page,
+        limit,
       });
     } catch (e) {
       // TODO: handle errors/toast
